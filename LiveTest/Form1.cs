@@ -39,9 +39,9 @@ namespace LiveTest
 
                 lstCreature = new List<Creature>();
                 Random r = new Random(DateTime.Now.Second);
-                for (int i = 1; i <= row; i++)
+                for (int i = 0; i < row; i++)
                 {
-                    for (int j = 1; j <= column; j++)
+                    for (int j = 0; j < column; j++)
                     {
                         Creature oCreature = new Creature();
                         oCreature.row = i;
@@ -110,15 +110,342 @@ namespace LiveTest
         {
             List<string> lstShow = new List<string>();
 
+            int[,] tempAry = new int[row, column];
+            for (int i = 0; i < lstCreature.Count; i++)
+            {
+                tempAry[lstCreature[i].row, lstCreature[i].column] = Convert.ToInt32(lstCreature[i].show);
+            }
+
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < column; j++)
+                {
+                    int threshold = 0;
+
+                    if (j - 1 >= 0 && tempAry[i, j - 1] == Convert.ToInt32(LIVE))
+                    {
+                        threshold++;
+                    }
+
+                    if (i - 1 >= 0 && j - 1 >= 0 && tempAry[i - 1, j - 1] == Convert.ToInt32(LIVE))
+                    {
+                        threshold++;
+                    }
+
+                    if (i - 1 >= 0 && tempAry[i - 1, j] == Convert.ToInt32(LIVE))
+                    {
+                        threshold++;
+                    }
+
+                    if (i - 1 >= 0 && j + 1 < column && tempAry[i - 1, j + 1] == Convert.ToInt32(LIVE))
+                    {
+                        threshold++;
+                    }
+
+                    if (j + 1 < column && tempAry[i, j + 1] == Convert.ToInt32(LIVE))
+                    {
+                        threshold++;
+                    }
+
+                    if (i + 1 < row && j + 1 < column && tempAry[i + 1, j + 1] == Convert.ToInt32(LIVE))
+                    {
+                        threshold++;
+                    }
+
+                    if (i + 1 < row && tempAry[i + 1, j] == Convert.ToInt32(LIVE))
+                    {
+                        threshold++;
+                    }
+
+                    if (i + 1 < row && j - 1 >= 0 && tempAry[i + 1, j - 1] == Convert.ToInt32(LIVE))
+                    {
+                        threshold++;
+                    }
+
+                    if (tempAry[i, j] == Convert.ToInt32(DIED))
+                    {
+                        if (threshold == 3)
+                        {
+                            lstShow.Add(LIVE);
+                        }
+                        else
+                        {
+                            lstShow.Add(DIED);
+                        }
+                    }
+                    else
+                    {
+                        if (threshold < 2 || threshold > 3)
+                        {
+                            lstShow.Add(DIED);
+                        }
+                        else
+                        {
+                            lstShow.Add(LIVE);
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < lstCreature.Count; i++)
+            {
+                lstCreature[i].show = lstShow[i];
+            }
+
+            /*
             for (int i = 0; i < lstCreature.Count; i++)
             {
                 int threshold = 0;
                 var item = lstCreature[i];
 
-                if (item.row == 1 && item.column == 5)
+                if (lstCreature[i].row == 1 && lstCreature[i].column == 1)
                 {
 
+                    // right
+                    if (lstCreature.Where(x => x.row == item.row
+                        && x.column == item.column + 1
+                        && x.show == "1").Count() == 1)
+                    {
+                        threshold++;
+                    }
+
+                    // right down
+                    if (lstCreature.Where(x => x.row == item.row + 1
+                        && x.column == item.column + 1
+                        && x.show == "1").Count() == 1)
+                    {
+                        threshold++;
+                    }
+
+                    // down
+                    if (lstCreature.Where(x => x.row == item.row + 1
+                        && x.column == item.column
+                        && x.show == "1").Count() == 1)
+                    {
+                        threshold++;
+                    }
+
                 }
+                else if (lstCreature[i].row == Convert.ToInt32(txtRow.Text) &&
+                    lstCreature[i].column == Convert.ToInt32(txtColumn.Text))
+                {
+                    // top
+                    if (lstCreature.Where(x => x.row == item.row - 1
+                        && x.column == item.column
+                        && x.show == "1").Count() == 1)
+                    {
+                        threshold++;
+                    }
+
+                    // left top
+                    if (lstCreature.Where(x => x.row == item.row - 1
+                        && x.column == item.column - 1
+                        && x.show == "1").Count() == 1)
+                    {
+                        threshold++;
+                    }
+
+                    // left
+                    if (lstCreature.Where(x => x.row == item.row
+                        && x.column == item.column - 1
+                        && x.show == "1").Count() == 1)
+                    {
+                        threshold++;
+                    }
+                }
+                else if (lstCreature[i].row == Convert.ToInt32(txtRow.Text) &&
+                    lstCreature[i].column == 1)
+                {
+                    // top
+                    if (lstCreature.Where(x => x.row == item.row - 1
+                        && x.column == item.column
+                        && x.show == "1").Count() == 1)
+                    {
+                        threshold++;
+                    }
+
+                    // top right
+                    if (lstCreature.Where(x => x.row == item.row - 1
+                        && x.column == item.column + 1
+                        && x.show == "1").Count() == 1)
+                    {
+                        threshold++;
+                    }
+
+                    // right
+                    if (lstCreature.Where(x => x.row == item.row
+                        && x.column == item.column + 1
+                        && x.show == "1").Count() == 1)
+                    {
+                        threshold++;
+                    }
+                }
+                else if (lstCreature[i].row == 1 &&
+                    lstCreature[i].column == Convert.ToInt32(txtColumn.Text))
+                {
+                    // left
+                    if (lstCreature.Where(x => x.row == item.row
+                        && x.column == item.column - 1
+                        && x.show == "1").Count() == 1)
+                    {
+                        threshold++;
+                    }
+
+                    // left down
+                    if (lstCreature.Where(x => x.row == item.row - 1
+                        && x.column == item.column - 1
+                        && x.show == "1").Count() == 1)
+                    {
+                        threshold++;
+                    }
+
+                    // down
+                    if (lstCreature.Where(x => x.row == item.row + 1
+                        && x.column == item.column
+                        && x.show == "1").Count() == 1)
+                    {
+                        threshold++;
+                    }
+                }
+                else
+                {
+                    if (item.row != 1 && item.column != 1)
+                    {
+                        // left top
+                        if (lstCreature.Where(x => x.row == item.row - 1
+                            && x.column == item.column - 1
+                            && x.show == "1").Count() == 1)
+                        {
+                            threshold++;
+                        }
+                    }
+
+
+                    if (item.row != 1)
+                    {
+                        // top
+                        if (lstCreature.Where(x => x.row == item.row - 1
+                            && x.column == item.column
+                            && x.show == "1").Count() == 1)
+                        {
+                            threshold++;
+                        }
+
+
+                    }
+
+                    if (item.row != 1 && item.column != column)
+                    {
+                        // top right
+                        if (lstCreature.Where(x => x.row == item.row - 1
+                            && x.column == item.column + 1
+                            && x.show == "1").Count() == 1)
+                        {
+                            threshold++;
+                        }
+                    }
+
+                    if (item.column != column)
+                    {
+                        // right
+                        if (lstCreature.Where(x => x.row == item.row
+                            && x.column == item.column + 1
+                            && x.show == "1").Count() == 1)
+                        {
+                            threshold++;
+                        }
+                    }
+
+                    if (item.row != row && item.column != column)
+                    {
+                        // right down
+                        if (lstCreature.Where(x => x.row == item.row + 1
+                            && x.column == item.column + 1
+                            && x.show == "1").Count() == 1)
+                        {
+                            threshold++;
+                        }
+                    }
+
+                    if (item.row != row)
+                    {
+                        // down
+                        if (lstCreature.Where(x => x.row == item.row + 1
+                            && x.column == item.column
+                            && x.show == "1").Count() == 1)
+                        {
+                            threshold++;
+                        }
+                    }
+
+                    if (item.row != row && item.column != 1)
+                    {
+                        // left down
+                        if (lstCreature.Where(x => x.row == item.row + 1
+                            && x.column == item.column - 1
+                            && x.show == "1").Count() == 1)
+                        {
+                            threshold++;
+                        }
+                    }
+
+                    if (item.column != 1)
+                    {
+                        // left
+                        if (lstCreature.Where(x => x.row == item.row
+                            && x.column == item.column - 1
+                            && x.show == "1").Count() == 1)
+                        {
+                            threshold++;
+                        }
+                    }
+                }
+
+                if (item.show == DIED)
+                {
+                    if (threshold == 3)
+                    {
+                        lstShow.Add(LIVE);
+                    }
+                    else
+                    {
+                        lstShow.Add(DIED);
+                    }
+                }
+                else
+                {
+                    if (threshold < 2 || threshold > 3)
+                    {
+                        lstShow.Add(DIED);
+                        //lstCreature[i].show = DIED;
+                    }
+                    else
+                    {
+                        lstShow.Add(LIVE);
+                        //lstCreature[i].show = LIVE;
+                    }
+                }
+
+            }
+
+            for (int i = 0; i < lstCreature.Count; i++)
+            {
+                lstCreature[i].show = lstShow[i];
+            }
+            * */
+
+            viewForm1.ShowGrid(row, column, lstCreature);
+        }
+
+        private void OldMethod()
+        {
+            List<string> lstShow = new List<string>();
+
+            for (int i = 0; i < lstCreature.Count; i++)
+            {
+                int threshold = 0;
+                var item = lstCreature[i];
+
                 if (lstCreature[i].row == 1 && lstCreature[i].column == 1)
                 {
 
