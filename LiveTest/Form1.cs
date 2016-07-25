@@ -64,22 +64,8 @@ namespace LiveTest
                     }
                 }
 
-                switch (cmbSpeed.Text)
-                {
-                    case "Fast":
-                        timerSpeed.Interval = 100;
-                        break;
-                    case "Middle":
-                        timerSpeed.Interval = 1000;
-                        break;
-                    case "Slow":
-                        timerSpeed.Interval = 5000;
-                        break;
-                    default:
-                        timerSpeed.Interval = 100;
-                        cmbSpeed.Text = "Middle";
-                        break;
-                }
+                timerSpeed.Interval = trackBar.Value * 10;
+
                 viewForm1.row = row;
                 viewForm1.column = column;
                 viewForm1.lstCreature = lstCreature;
