@@ -37,13 +37,14 @@
             this.btnStop = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtRound = new System.Windows.Forms.TextBox();
-            this.cmbSpeed = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.viewForm1 = new LiveTest.ViewForm();
             this.label4 = new System.Windows.Forms.Label();
             this.txtBeginRatio = new System.Windows.Forms.TextBox();
-            this.viewForm1 = new LiveTest.ViewForm();
             this.timerSpeed = new System.Windows.Forms.Timer(this.components);
+            this.trackBar = new System.Windows.Forms.TrackBar();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // txtRow
@@ -82,9 +83,9 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(491, 4);
+            this.btnStart.Location = new System.Drawing.Point(564, 5);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 23);
+            this.btnStart.Size = new System.Drawing.Size(39, 23);
             this.btnStart.TabIndex = 5;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -92,9 +93,9 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(572, 4);
+            this.btnStop.Location = new System.Drawing.Point(609, 4);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.Size = new System.Drawing.Size(38, 23);
             this.btnStop.TabIndex = 6;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = true;
@@ -117,30 +118,26 @@
             this.txtRound.TabIndex = 7;
             this.txtRound.Text = "100";
             // 
-            // cmbSpeed
-            // 
-            this.cmbSpeed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSpeed.FormattingEnabled = true;
-            this.cmbSpeed.Items.AddRange(new object[] {
-            "Fast",
-            "Middle",
-            "Slow"});
-            this.cmbSpeed.Location = new System.Drawing.Point(407, 5);
-            this.cmbSpeed.Name = "cmbSpeed";
-            this.cmbSpeed.Size = new System.Drawing.Size(78, 20);
-            this.cmbSpeed.TabIndex = 9;
-            this.cmbSpeed.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.viewForm1);
-            this.panel1.Location = new System.Drawing.Point(14, 33);
+            this.panel1.Location = new System.Drawing.Point(14, 57);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(633, 393);
+            this.panel1.Size = new System.Drawing.Size(633, 369);
             this.panel1.TabIndex = 10;
+            // 
+            // viewForm1
+            // 
+            this.viewForm1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.viewForm1.Location = new System.Drawing.Point(6, 24);
+            this.viewForm1.Name = "viewForm1";
+            this.viewForm1.Size = new System.Drawing.Size(621, 337);
+            this.viewForm1.TabIndex = 0;
             // 
             // label4
             // 
@@ -159,29 +156,28 @@
             this.txtBeginRatio.TabIndex = 11;
             this.txtBeginRatio.Text = "50";
             // 
-            // viewForm1
-            // 
-            this.viewForm1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.viewForm1.Location = new System.Drawing.Point(6, 6);
-            this.viewForm1.Name = "viewForm1";
-            this.viewForm1.Size = new System.Drawing.Size(621, 379);
-            this.viewForm1.TabIndex = 0;
-            // 
             // timerSpeed
             // 
             this.timerSpeed.Tick += new System.EventHandler(this.timerSpeed_Tick);
+            // 
+            // trackBar
+            // 
+            this.trackBar.Location = new System.Drawing.Point(382, 6);
+            this.trackBar.Minimum = 1;
+            this.trackBar.Name = "trackBar";
+            this.trackBar.Size = new System.Drawing.Size(176, 45);
+            this.trackBar.TabIndex = 13;
+            this.trackBar.Value = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(659, 434);
+            this.Controls.Add(this.trackBar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtBeginRatio);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.cmbSpeed);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtRound);
             this.Controls.Add(this.btnStop);
@@ -191,10 +187,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtRow);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Live";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,12 +207,12 @@
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtRound;
-        private System.Windows.Forms.ComboBox cmbSpeed;
         private System.Windows.Forms.Panel panel1;
         private ViewForm viewForm1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtBeginRatio;
         private System.Windows.Forms.Timer timerSpeed;
+        private System.Windows.Forms.TrackBar trackBar;
     }
 }
 
