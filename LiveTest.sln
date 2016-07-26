@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveTest", "LiveTest\LiveTest.csproj", "{362B5371-C061-441E-9088-C1C0DEBFF668}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveWinForm", "LiveTest\LiveWinForm.csproj", "{362B5371-C061-441E-9088-C1C0DEBFF668}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveWPF", "LiveWPF\LiveWPF.csproj", "{C3AE75A1-2788-43F3-A829-8F849EF019A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveLogic", "LiveLogic\LiveLogic.csproj", "{51BD8F44-EED5-4A7B-8718-2B51CC69FE66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C3AE75A1-2788-43F3-A829-8F849EF019A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3AE75A1-2788-43F3-A829-8F849EF019A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3AE75A1-2788-43F3-A829-8F849EF019A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51BD8F44-EED5-4A7B-8718-2B51CC69FE66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51BD8F44-EED5-4A7B-8718-2B51CC69FE66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51BD8F44-EED5-4A7B-8718-2B51CC69FE66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51BD8F44-EED5-4A7B-8718-2B51CC69FE66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

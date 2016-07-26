@@ -17,19 +17,15 @@ namespace LiveTest
             InitializeComponent();
         }
 
-        public int column { get; internal set; }
-        public List<Creature> lstCreature { get; internal set; }
-        public int row { get; internal set; }
-
-        //public void ShowGrid(int row, int col, List<Creature> lstCreature)
-        //{         
-        //}
+        public int column { get; set; }
+        public List<Creature> lstCreature { get; set; }
+        public int row { get; set; }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
-            if (row!=0 && column!=0 && lstCreature!=null && lstCreature.Count>0)
+            if (row != 0 && column != 0 && lstCreature != null && lstCreature.Count > 0)
             {
                 Graphics dc = e.Graphics;
                 dc.Clear(Color.WhiteSmoke);

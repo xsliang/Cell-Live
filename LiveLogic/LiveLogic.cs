@@ -1,104 +1,57 @@
-﻿using System;
+﻿using LiveTest;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace LiveTest
+namespace LiveLogic
 {
-    public partial class Form1 : Form
+    public class LiveBiz
     {
-        int row = 0;
-        int column = 0;
+        public int row { get; set; }
+        public int column { get; set; }
+
+
+        public List<Creature> lstCreature { get; set; }
 
         const string LIVE = "1";
 
         const string DIED = "0";
 
-        List<Creature> lstCreature = new List<Creature>();
-
-        public Form1()
+        public LiveBiz()
         {
-            InitializeComponent();
+            lstCreature = new List<Creature>();
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+        public void InitCreature(int ratio)
         {
-            if (string.IsNullOrEmpty(txtRow.Text) || string.IsNullOrEmpty(txtColumn.Text))
-            {
-                return;
-            }
-            else
-            {
-                row = Convert.ToInt32(txtRow.Text);
-                column = Convert.ToInt32(txtColumn.Text);
+            lstCreature.Clear();
 
-                lstCreature = new List<Creature>();
-                Random r = new Random(DateTime.Now.Second);
-                for (int i = 0; i < row; i++)
+            Random r = new Random(DateTime.Now.Second);
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < column; j++)
                 {
-                    for (int j = 0; j < column; j++)
+                    Creature oCreature = new Creature();
+                    oCreature.row = i;
+                    oCreature.column = j;
+                    double result = r.Next(0, 1000) * 0.1;
+                    if (result < Convert.ToDouble(ratio))
                     {
-                        Creature oCreature = new Creature();
-                        oCreature.row = i;
-                        oCreature.column = j;
-                        double result = r.Next(0, 1000) * 0.1;
-                        if (result < Convert.ToDouble(txtBeginRatio.Text))
-                        {
-                            oCreature.show = DIED;
-                        }
-                        else
-                        {
-                            oCreature.show = LIVE;
-                        }
-
-                        //test
-                        //oCreature.show = DIED;
-                        //test
-
-                        lstCreature.Add(oCreature);
+                        oCreature.show = DIED;
                     }
+                    else
+                    {
+                        oCreature.show = LIVE;
+                    }
+
+                    lstCreature.Add(oCreature);
                 }
-
-                timerSpeed.Interval = trackBar.Value * 10;
-
-                viewForm1.row = row;
-                viewForm1.column = column;
-                viewForm1.lstCreature = lstCreature;
-                this.Invalidate();
-                timerSpeed.Start();
-
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            viewForm1.row = row;
-            viewForm1.column = column;
-            viewForm1.lstCreature = lstCreature;
-            viewForm1.Invalidate();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void timerSpeed_Tick(object sender, EventArgs e)
-        {
-            NewMethod();
-        }
-
-        private void NewMethod()
+        public void CalcLiveStatus()
         {
             List<string> lstShow = new List<string>();
 
@@ -183,15 +136,9 @@ namespace LiveTest
             {
                 lstCreature[i].show = lstShow[i];
             }
-
-            //viewForm1.ShowGrid(row, column, lstCreature);
-            viewForm1.row = row;
-            viewForm1.column = column;
-            viewForm1.lstCreature = lstCreature;
-            viewForm1.Invalidate();
         }
 
-        private void OldMethod()
+        private void CalcLiveStatus_old()
         {
             List<string> lstShow = new List<string>();
 
@@ -228,8 +175,7 @@ namespace LiveTest
                     }
 
                 }
-                else if (lstCreature[i].row == Convert.ToInt32(txtRow.Text) &&
-                    lstCreature[i].column == Convert.ToInt32(txtColumn.Text))
+                else if (lstCreature[i].row == row && lstCreature[i].column == column)
                 {
                     // top
                     if (lstCreature.Where(x => x.row == item.row - 1
@@ -255,8 +201,7 @@ namespace LiveTest
                         threshold++;
                     }
                 }
-                else if (lstCreature[i].row == Convert.ToInt32(txtRow.Text) &&
-                    lstCreature[i].column == 1)
+                else if (lstCreature[i].row == row && lstCreature[i].column == 1)
                 {
                     // top
                     if (lstCreature.Where(x => x.row == item.row - 1
@@ -282,8 +227,7 @@ namespace LiveTest
                         threshold++;
                     }
                 }
-                else if (lstCreature[i].row == 1 &&
-                    lstCreature[i].column == Convert.ToInt32(txtColumn.Text))
+                else if (lstCreature[i].row == 1 && lstCreature[i].column == column)
                 {
                     // left
                     if (lstCreature.Where(x => x.row == item.row
@@ -435,15 +379,10 @@ namespace LiveTest
                 lstCreature[i].show = lstShow[i];
             }
 
-            viewForm1.row = row;
-            viewForm1.column = column;
-            viewForm1.lstCreature = lstCreature;
-            viewForm1.Invalidate();
-        }
-
-        private void btnStop_Click(object sender, EventArgs e)
-        {
-            timerSpeed.Stop();
+            //viewForm1.row = row;
+            //viewForm1.column = column;
+            //viewForm1.lstCreature = lstCreature;
+            //viewForm1.Invalidate();
         }
     }
 }

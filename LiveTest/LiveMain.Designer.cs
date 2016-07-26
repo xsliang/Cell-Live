@@ -1,6 +1,6 @@
 ﻿namespace LiveTest
 {
-    partial class Form1
+    partial class LiveMain
     {
         /// <summary>
         /// Required designer variable.
@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.txtRow = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtColumn = new System.Windows.Forms.TextBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,20 +38,17 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.viewForm1 = new LiveTest.ViewForm();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtBeginRatio = new System.Windows.Forms.TextBox();
             this.timerSpeed = new System.Windows.Forms.Timer(this.components);
             this.trackBar = new System.Windows.Forms.TrackBar();
+            this.numericUpDownRow = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownColumn = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownBeginRatio = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownColumn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBeginRatio)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtRow
-            // 
-            this.txtRow.Location = new System.Drawing.Point(45, 6);
-            this.txtRow.Name = "txtRow";
-            this.txtRow.Size = new System.Drawing.Size(37, 19);
-            this.txtRow.TabIndex = 0;
-            this.txtRow.Text = "30";
             // 
             // label1
             // 
@@ -73,14 +68,6 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Cloumn";
             // 
-            // txtColumn
-            // 
-            this.txtColumn.Location = new System.Drawing.Point(137, 6);
-            this.txtColumn.Name = "txtColumn";
-            this.txtColumn.Size = new System.Drawing.Size(37, 19);
-            this.txtColumn.TabIndex = 2;
-            this.txtColumn.Text = "30";
-            // 
             // btnStart
             // 
             this.btnStart.Location = new System.Drawing.Point(564, 5);
@@ -93,7 +80,7 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(609, 4);
+            this.btnStop.Location = new System.Drawing.Point(609, 6);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(38, 23);
             this.btnStop.TabIndex = 6;
@@ -112,7 +99,7 @@
             // 
             // txtRound
             // 
-            this.txtRound.Location = new System.Drawing.Point(229, 6);
+            this.txtRound.Location = new System.Drawing.Point(223, 6);
             this.txtRound.Name = "txtRound";
             this.txtRound.Size = new System.Drawing.Size(37, 19);
             this.txtRound.TabIndex = 7;
@@ -148,14 +135,6 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "BeginRatio";
             // 
-            // txtBeginRatio
-            // 
-            this.txtBeginRatio.Location = new System.Drawing.Point(339, 6);
-            this.txtBeginRatio.Name = "txtBeginRatio";
-            this.txtBeginRatio.Size = new System.Drawing.Size(37, 19);
-            this.txtBeginRatio.TabIndex = 11;
-            this.txtBeginRatio.Text = "50";
-            // 
             // timerSpeed
             // 
             this.timerSpeed.Tick += new System.EventHandler(this.timerSpeed_Tick);
@@ -169,40 +148,114 @@
             this.trackBar.TabIndex = 13;
             this.trackBar.Value = 1;
             // 
-            // Form1
+            // numericUpDownRow
+            // 
+            this.numericUpDownRow.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDownRow.Location = new System.Drawing.Point(45, 7);
+            this.numericUpDownRow.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.numericUpDownRow.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDownRow.Name = "numericUpDownRow";
+            this.numericUpDownRow.Size = new System.Drawing.Size(37, 19);
+            this.numericUpDownRow.TabIndex = 14;
+            this.numericUpDownRow.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDownColumn
+            // 
+            this.numericUpDownColumn.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDownColumn.Location = new System.Drawing.Point(137, 6);
+            this.numericUpDownColumn.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.numericUpDownColumn.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDownColumn.Name = "numericUpDownColumn";
+            this.numericUpDownColumn.Size = new System.Drawing.Size(37, 19);
+            this.numericUpDownColumn.TabIndex = 15;
+            this.numericUpDownColumn.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDownBeginRatio
+            // 
+            this.numericUpDownBeginRatio.Location = new System.Drawing.Point(339, 6);
+            this.numericUpDownBeginRatio.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.numericUpDownBeginRatio.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownBeginRatio.Name = "numericUpDownBeginRatio";
+            this.numericUpDownBeginRatio.Size = new System.Drawing.Size(37, 19);
+            this.numericUpDownBeginRatio.TabIndex = 16;
+            this.numericUpDownBeginRatio.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            // 
+            // LiveMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(659, 434);
+            this.Controls.Add(this.numericUpDownBeginRatio);
+            this.Controls.Add(this.numericUpDownColumn);
+            this.Controls.Add(this.numericUpDownRow);
             this.Controls.Add(this.trackBar);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtBeginRatio);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtRound);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtColumn);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtRow);
-            this.Name = "Form1";
+            this.Name = "LiveMain";
             this.Text = "Live";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownColumn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBeginRatio)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtRow;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtColumn;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Label label3;
@@ -210,9 +263,11 @@
         private System.Windows.Forms.Panel panel1;
         private ViewForm viewForm1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtBeginRatio;
         private System.Windows.Forms.Timer timerSpeed;
         private System.Windows.Forms.TrackBar trackBar;
+        private System.Windows.Forms.NumericUpDown numericUpDownRow;
+        private System.Windows.Forms.NumericUpDown numericUpDownColumn;
+        private System.Windows.Forms.NumericUpDown numericUpDownBeginRatio;
     }
 }
 
