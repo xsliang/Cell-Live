@@ -20,6 +20,7 @@ namespace LiveTest
         public int column { get; set; }
         public List<Creature> lstCreature { get; set; }
         public int row { get; set; }
+        public Color lineColor { get; set; }
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -36,7 +37,7 @@ namespace LiveTest
                 float eachWidth = (Width - 6) / row;
                 float eachHeight = (Height - 6) / column;
 
-                Pen rowLinePen = new Pen(Color.Black, 1);
+                Pen rowLinePen = new Pen(lineColor, 1);
 
                 SolidBrush brushLive = new SolidBrush(Color.Black);
 

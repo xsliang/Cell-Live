@@ -30,23 +30,22 @@
         {
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtRound = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.viewForm1 = new LiveTest.ViewForm();
             this.label4 = new System.Windows.Forms.Label();
             this.timerSpeed = new System.Windows.Forms.Timer(this.components);
             this.trackBar = new System.Windows.Forms.TrackBar();
-            this.numericUpDownRow = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownColumn = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownMatrix = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownBeginRatio = new System.Windows.Forms.NumericUpDown();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.btnColor = new System.Windows.Forms.Button();
+            this.viewForm1 = new LiveTest.ViewForm();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRow)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownColumn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMatrix)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBeginRatio)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,18 +54,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 12);
+            this.label1.Size = new System.Drawing.Size(37, 12);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Row";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(88, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 12);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Cloumn";
+            this.label1.Text = "Matrix";
             // 
             // btnStart
             // 
@@ -116,16 +106,6 @@
             this.panel1.Size = new System.Drawing.Size(633, 369);
             this.panel1.TabIndex = 10;
             // 
-            // viewForm1
-            // 
-            this.viewForm1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.viewForm1.Location = new System.Drawing.Point(6, 24);
-            this.viewForm1.Name = "viewForm1";
-            this.viewForm1.Size = new System.Drawing.Size(621, 337);
-            this.viewForm1.TabIndex = 0;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -148,55 +128,28 @@
             this.trackBar.TabIndex = 13;
             this.trackBar.Value = 1;
             // 
-            // numericUpDownRow
+            // numericUpDownMatrix
             // 
-            this.numericUpDownRow.Increment = new decimal(new int[] {
+            this.numericUpDownMatrix.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDownRow.Location = new System.Drawing.Point(45, 7);
-            this.numericUpDownRow.Maximum = new decimal(new int[] {
-            200,
+            this.numericUpDownMatrix.Location = new System.Drawing.Point(55, 6);
+            this.numericUpDownMatrix.Maximum = new decimal(new int[] {
+            256,
             0,
             0,
             0});
-            this.numericUpDownRow.Minimum = new decimal(new int[] {
+            this.numericUpDownMatrix.Minimum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDownRow.Name = "numericUpDownRow";
-            this.numericUpDownRow.Size = new System.Drawing.Size(37, 19);
-            this.numericUpDownRow.TabIndex = 14;
-            this.numericUpDownRow.Value = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            // 
-            // numericUpDownColumn
-            // 
-            this.numericUpDownColumn.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numericUpDownColumn.Location = new System.Drawing.Point(137, 6);
-            this.numericUpDownColumn.Maximum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.numericUpDownColumn.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numericUpDownColumn.Name = "numericUpDownColumn";
-            this.numericUpDownColumn.Size = new System.Drawing.Size(37, 19);
-            this.numericUpDownColumn.TabIndex = 15;
-            this.numericUpDownColumn.Value = new decimal(new int[] {
+            this.numericUpDownMatrix.Name = "numericUpDownMatrix";
+            this.numericUpDownMatrix.Size = new System.Drawing.Size(37, 19);
+            this.numericUpDownMatrix.TabIndex = 14;
+            this.numericUpDownMatrix.Value = new decimal(new int[] {
             30,
             0,
             0,
@@ -224,14 +177,37 @@
             0,
             0});
             // 
+            // btnColor
+            // 
+            this.btnColor.Location = new System.Drawing.Point(98, 4);
+            this.btnColor.Name = "btnColor";
+            this.btnColor.Size = new System.Drawing.Size(44, 23);
+            this.btnColor.TabIndex = 17;
+            this.btnColor.Text = "Color";
+            this.btnColor.UseVisualStyleBackColor = true;
+            this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
+            // 
+            // viewForm1
+            // 
+            this.viewForm1.BackColor = System.Drawing.Color.White;
+            this.viewForm1.column = 0;
+            this.viewForm1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.viewForm1.lineColor = System.Drawing.Color.Empty;
+            this.viewForm1.Location = new System.Drawing.Point(0, 0);
+            this.viewForm1.lstCreature = null;
+            this.viewForm1.Name = "viewForm1";
+            this.viewForm1.row = 0;
+            this.viewForm1.Size = new System.Drawing.Size(633, 369);
+            this.viewForm1.TabIndex = 0;
+            // 
             // LiveMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(659, 434);
+            this.Controls.Add(this.btnColor);
             this.Controls.Add(this.numericUpDownBeginRatio);
-            this.Controls.Add(this.numericUpDownColumn);
-            this.Controls.Add(this.numericUpDownRow);
+            this.Controls.Add(this.numericUpDownMatrix);
             this.Controls.Add(this.trackBar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel1);
@@ -239,14 +215,12 @@
             this.Controls.Add(this.txtRound);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnStart);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "LiveMain";
             this.Text = "Live";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRow)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownColumn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMatrix)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBeginRatio)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -255,7 +229,6 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Label label3;
@@ -265,9 +238,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Timer timerSpeed;
         private System.Windows.Forms.TrackBar trackBar;
-        private System.Windows.Forms.NumericUpDown numericUpDownRow;
-        private System.Windows.Forms.NumericUpDown numericUpDownColumn;
+        private System.Windows.Forms.NumericUpDown numericUpDownMatrix;
         private System.Windows.Forms.NumericUpDown numericUpDownBeginRatio;
+        private System.Windows.Forms.ColorDialog colorDialog;
+        private System.Windows.Forms.Button btnColor;
     }
 }
 

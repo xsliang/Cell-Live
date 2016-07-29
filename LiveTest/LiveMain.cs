@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -11,6 +12,8 @@ namespace LiveTest
     {
         LiveBiz llogic = new LiveBiz();
 
+        Color lineColor { get; set; }
+
         public LiveMain()
         {
             InitializeComponent();
@@ -18,8 +21,8 @@ namespace LiveTest
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            llogic.row = Convert.ToInt32(numericUpDownRow.Value);
-            llogic.column = Convert.ToInt32(numericUpDownColumn.Value);
+            llogic.row = Convert.ToInt32(numericUpDownMatrix.Value);
+            llogic.column = Convert.ToInt32(numericUpDownMatrix.Value);
 
             llogic.InitCreature(Convert.ToInt32(numericUpDownBeginRatio.Value));
 
@@ -30,6 +33,7 @@ namespace LiveTest
             viewForm1.row = llogic.row;
             viewForm1.column = llogic.column;
             viewForm1.lstCreature = llogic.lstCreature;
+            viewForm1.lineColor = lineColor;
             viewForm1.Invalidate();
             timerSpeed.Start();
         }
@@ -45,6 +49,12 @@ namespace LiveTest
         private void btnStop_Click(object sender, EventArgs e)
         {
             timerSpeed.Stop();
+        }
+
+        private void btnColor_Click(object sender, EventArgs e)
+        {
+            colorDialog.ShowDialog();
+            lineColor = colorDialog.Color;
         }
     }
 }
